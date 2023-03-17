@@ -1,4 +1,5 @@
 import requests
+import datetime
 
 
 USERNAME = "kirill1984"
@@ -46,6 +47,11 @@ def put_pixel(yyyymmdd: str, count: str, option=None):
 
     print(pixel_params)
     return put_pixel_response
+def get_today_date():
+    now = datetime.datetime.now()
+    now_date = now.strftime("%Y%m%d")
+    return now_date
+
 if __name__ == '__main__':
-    answer = put_pixel('20230317', '0')
+    answer = put_pixel(get_today_date(), '0')
     print(answer.text)
