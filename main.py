@@ -34,3 +34,18 @@ pixela_get_graph_url= f"{pixela_endpoint}/{USERNAME}/graphs/{graph_params['id']}
 pixela_get_graph = requests.get(url=pixela_get_graph_url)
 print(pixela_get_graph.url)
 
+def put_pixel(yyyymmdd: str, count: str, option=None):
+
+    pixel_params = {
+        'date': yyyymmdd,
+        'quantity': count,
+        'optionalData': option,
+    }
+    put_pixel_response = requests.post(url=f"{pixela_graph_endpoint}/{graph_params['id']}", headers=pixela_headers,
+                                       json=pixel_params)
+
+    print(pixel_params)
+    return put_pixel_response
+if __name__ == '__main__':
+    answer = put_pixel('20230317', '0')
+    print(answer.text)
